@@ -1,3 +1,12 @@
+.input-ctn {
+    width: 400px;
+    margin: 30px auto;
+}
+
+label {
+    margin: 10px;
+}
+
 .weather-img-ctn {
     height: 100px;
     width: 500px;
