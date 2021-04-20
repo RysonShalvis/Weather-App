@@ -31,7 +31,7 @@ class App extends Component {
   .then(data => {
     const farenheit = (data.main.temp - 273.15) * (9/5) + 32
     this.setState({
-      fullInfo: <p className="weather-info">The temperature of {data.name}, {data.sys.country} is {Math.round(farenheit)} degrees farenheit  and the wind speed is {data.wind.speed}</p>
+      fullInfo: <p className="weather-info">The temperature of {data.name}, {data.sys.country} is {Math.round(farenheit)} degrees farenheit with {data.weather[0].description} and the wind speed is {data.wind.speed}.</p>
     })
     console.log(data);
     }); 
