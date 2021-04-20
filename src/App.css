@@ -1,0 +1,32 @@
+.weather-img-ctn {
+    height: 100px;
+    width: 500px;
+    border-style: solid;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.left-ctn {
+    margin-left: 20px;
+}
+
+.weather-img {
+    height: 50px;
+}
+
+.other-info {
+    font-size: 12px;
+}
+
+.location {
+    margin-right: 10px;
+}
