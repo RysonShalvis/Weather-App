@@ -1,8 +1,3 @@
-import sunny from './images/sunny.jpeg';
-import thunderstorm from './images/thunderstorm.jpeg';
-import cloudy from './images/cloudy.png';
-import rainy from './images/rainy.png';
-import snowy from './images/snowy.png';
 import Inputs from './Inputs';
 import Weather from './Weather';
 import './App.css';
@@ -53,30 +48,10 @@ class App extends Component {
         const farenheit = (data.main.temp - 273.15) * (9/5) + 32;
         const feelsLike = (data.main.feels_like - 273.15) * (9/5) + 32;
         const windSpeed = data.wind.speed * 2.237;
-        let weatherImage;
-        switch (data.weather[0].main) {
-          case 'Clear':
-            weatherImage = sunny
-            break;
-          
-          case 'Thunderstorm':
-            weatherImage = thunderstorm;
-            break;
-    
-          case 'Rain':
-            weatherImage = rainy;
-            break;
-    
-          case 'Snow':
-            weatherImage = snowy;
-            break;
-    
-          default: 
-          weatherImage = cloudy;
-        }; 
+        
     
         this.setState({
-          weatherImage: weatherImage,
+          weatherImage: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
           weatherDescription: data.weather[0].description,
           farenheit: farenheit.toFixed(2),
           feelsLike: feelsLike.toFixed(2),
@@ -93,8 +68,6 @@ class App extends Component {
   }
 
   render() {
-
-    Window.onKeyPress = this.onSearch
 
     return (
       <div>
