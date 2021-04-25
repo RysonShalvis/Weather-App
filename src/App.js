@@ -1,3 +1,8 @@
+import sunny from './images/sunny.jpeg';
+import thunderstorm from './images/thunderstorm.jpeg';
+import cloudy from './images/cloudy.png';
+import rainy from './images/rainy.png';
+import snowy from './images/snowy.png';
 import Inputs from './Inputs';
 import Weather from './Weather';
 import './App.css';
@@ -20,12 +25,15 @@ class App extends Component {
       windSpeed: 0,
       city: '',
       country: '',
-      data: false
+      weatherGif: '',
+      data: false,
+      gif: ''
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSearch = this.onSearch.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.handleGiphyApi = this.handleGiphyApi.bind(this);
   }
 
   onChange(e) {
@@ -38,6 +46,18 @@ class App extends Component {
       }
   }
 
+  handleGiphyApi () {
+    let weatherInput = this.state.weatherGif;
+    let random = Math.floor(Math.random() * 10)
+
+    fetch(`https://api.giphy.com/v1/gifs/search?api_key=BHH6ByPXW5IX6G17zKBpqhe0BFu4dKC2&q=${weatherInput}&limit=25&offset=0&rating=g&lang=en`)
+    .then(response => response.json())
+    .then(giphy => {
+      console.log(giphy.data[0].images.downsized_large.url);
+      this.setState({gif: giphy.data[random].images.downsized_large.url})
+    })
+  }
+
   onSearch(e) {
 
       const key = '240f126d721bf0d1689bec8754299a1f';
@@ -48,7 +68,29 @@ class App extends Component {
         const farenheit = (data.main.temp - 273.15) * (9/5) + 32;
         const feelsLike = (data.main.feels_like - 273.15) * (9/5) + 32;
         const windSpeed = data.wind.speed * 2.237;
-        
+        let weatherGif;
+        console.log(data.weather)
+        switch (data.weather[0].main) {
+          case 'Clear':
+            weatherGif = sunny
+            break;
+          
+          case 'Thunderstorm':
+            weatherGif = thunderstorm;
+            break;
+    
+          case 'Rain':
+            weatherGif = rainy;
+            break;
+    
+          case 'Snow':
+            weatherGif = snowy;
+            break;
+    
+          default: 
+          weatherGif = cloudy;
+        }; 
+
     
         this.setState({
           weatherImage: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
@@ -59,8 +101,10 @@ class App extends Component {
           windSpeed: windSpeed.toFixed(2),
           city: data.name,
           country: data.sys.country,
-          data: true
+          data: true,
+          weatherGif: data.weather[0].description
           })
+          this.handleGiphyApi();
         }); 
     
 
@@ -70,7 +114,8 @@ class App extends Component {
   render() {
 
     return (
-      <div>
+      <div style={{backgroundImage: `url(${this.state.gif})`, backgroundSize: 'cover', height: 500}}>
+        {/*<img src={this.state.gif} alt="weahter thingy"/> */}
         <Inputs
           onChange={this.onChange}
           onSearch={this.onSearch}
