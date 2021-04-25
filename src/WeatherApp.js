@@ -63,8 +63,8 @@ class WeatherApp extends Component {
         this.setState({
           weatherImage: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
           weatherDescription: data.weather[0].description,
-          farenheit: farenheit.toFixed(2),
-          feelsLike: feelsLike.toFixed(2),
+          farenheit: Math.round(farenheit),
+          feelsLike: Math.round(feelsLike),
           humidity: data.main.humidity,
           windSpeed: windSpeed.toFixed(2),
           city: data.name,

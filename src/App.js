@@ -8,24 +8,26 @@ class App extends Component {
             data1: '',
             data2: ''
         }
-        this.callBack = this.callBack.bind(this);
-        this.callBackTwo = this.callBackTwo.bind(this);
+        this.getChildData = this.getChildData.bind(this);
+        this.getChildDataTwo = this.getChildDataTwo.bind(this);
     }
 
-    callBack(data) {
+    getChildData(data) {
         this.setState({data1: data})
     }
 
-    callBackTwo(data) {
+    getChildDataTwo(data) {
         this.setState({data2: data})
     }
 
     render() {
         return (
-            <div className="weatherapp-ctn">
-                <WeatherApp childData={this.callBack}/>
-                <WeatherApp childData={this.callBackTwo} />
-                {this.state.data1 && this.state.data2 ? <p className="">{this.state.data1.name}{this.state.data2.name}</p> : ""}
+            <div className="">
+                <div className="weatherapp-ctn">
+                    <WeatherApp childData={this.getChildData}/>
+                    <WeatherApp childData={this.getChildDataTwo} />
+                </div>
+                {this.state.data1 && this.state.data2 ? <p className="">{this.state.data1.name} {this.state.data2.name}</p> : ""}
             </div>
         );
     }
