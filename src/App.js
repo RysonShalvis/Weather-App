@@ -115,7 +115,7 @@ class App extends Component {
 
     return (
       <div style={{backgroundImage: `url(${this.state.gif})`, backgroundSize: 'cover', height: 500}}>
-        {/*<img src={this.state.gif} alt="weahter thingy"/> */}
+        {/*<img src={this.state.gif} alt="weather thingy"/> */}
         <Inputs
           onChange={this.onChange}
           onSearch={this.onSearch}
