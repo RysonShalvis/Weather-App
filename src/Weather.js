@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 
 class Weather extends Component {
 
-    
-
     render() {
         const date = () => {
-            const day = new Date;
-            const month = new Date;
-            const year = new Date;
+            const day = new Date();
+            const month = new Date();
+            const year = new Date();
             return (`${month.getMonth() + 1}/${day.getDate()}/${year.getFullYear()}`)
         }
 
         const time = () => {
-            const hour = new Date;
-            const minute = new Date;
-           return (`${hour.getHours()}:${minute.getMinutes()}`)
+            const hour = new Date();
+            const minute = new Date();
+            let pm = `${hour.getHours() - 12}:${minute.getMinutes()} PM`;
+            if (hour.getHours() < 13) {
+                return (`${hour.getHours()}:${minute.getMinutes()} AM`)
+            }
+            return pm
         }
         if (this.props.data) {
             return (

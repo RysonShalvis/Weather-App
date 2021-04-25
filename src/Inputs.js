@@ -6,8 +6,8 @@ class Inputs extends Component {
             
             <div className="input-ctn">
                 <label htmlFor="input">Type in a Location</label>
-                <input onKeyPress={this.props.handleEnter} onChange={this.props.onChange} type="text" name="input" id="input"/>
-                <input onClick={this.props.onSearch} type="button" value="Search"/>
+                <input onChange={this.props.onChange} type="text" name="input"/>
+                <input onClick={this.props.onSearch} type="button" value="Search" />
             </div>
             
         );
