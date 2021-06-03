@@ -2,7 +2,7 @@ import Inputs from './Inputs';
 import Weather from './Weather';
 import './App.css';
 
-
+/* testing github pushes*/
 import React, { Component } from 'react';
 
 class WeatherApp extends Component {
